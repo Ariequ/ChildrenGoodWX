@@ -1,0 +1,81 @@
+.rewards-page {
+  min-height: 100vh;
+  background: var(--brand-bg, #F7F9FC);
+  padding-bottom: 160rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx 48rpx;
+  background: #fff;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.header-icon {
+  font-size: 44rpx;
+}
+
+.header .logo {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--text-primary, #1F2937);
+}
+
+.score-badge {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 50%;
+  background: var(--brand-yellow, #FFD93D);
+  border: 6rpx solid #E5A00D;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-value {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1rpx 2rpx rgba(0,0,0,0.25);
+}
+
+.header-subtitle {
+  padding: 16rpx 48rpx 24rpx;
+  background: #fff;
+  font-size: 28rpx;
+  color: #6B7280;
+}
+
+.content {
+  padding: 32rpx 32rpx 48rpx;
+}
+
+/* 两列网格：用 flex + 50% 宽 + 内边距留缝，兼容各机型（避免 grid 在部分机型不生效） */
+.reward-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -12rpx;
+}
+
+.reward-grid-item {
+  width: 50%;
+  padding: 12rpx;
+  box-sizing: border-box;
+}
+
+.empty {
+  text-align: center;
+  padding: 80rpx;
+  color: #9CA3AF;
+  font-size: 28rpx;
+}

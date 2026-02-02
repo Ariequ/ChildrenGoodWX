@@ -1,0 +1,22 @@
+<view class="login-page">
+  <view class="logo-area">
+    <text class="logo-text">萌芽好习惯</text>
+    <text class="subtitle">儿童习惯打卡 · 积分兑换奖励</text>
+  </view>
+  <view class="form-area" wx:if="{{showForm}}">
+    <input
+      class="input-code"
+      type="number"
+      placeholder="请输入邀请码"
+      value="{{code}}"
+      bindinput="onCodeInput"
+      maxlength="6"
+      focus
+    />
+    <text class="err-msg" wx:if="{{errMsg}}">{{errMsg}}</text>
+    <button class="btn-primary" bindtap="onSubmit" disabled="{{loading}}">
+      {{loading ? '登录中...' : '登录'}}
+    </button>
+    <button class="btn-ghost" bindtap="onEnterAsNew">直接进入（新用户）</button>
+  </view>
+</view>

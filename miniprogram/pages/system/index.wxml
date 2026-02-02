@@ -1,0 +1,88 @@
+<view class="system-page">
+  <view class="header">
+    <text class="logo">系统管理</text>
+  </view>
+
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">邀请码</text>
+      <button class="btn-add" bindtap="openCreateModal">+ 创建</button>
+    </view>
+    <view class="invite-list" wx:if="{{invites.length}}">
+      <view class="invite-item" wx:for="{{invites}}" wx:key="code">
+        <view class="invite-main">
+          <text class="invite-code" data-code="{{item.code}}" bindtap="copyCode">{{item.code}}</text>
+          <text class="invite-name">{{item.name}}</text>
+        </view>
+        <view class="invite-meta">
+          <switch
+            wx:if="{{item.code !== '888888'}}"
+            checked="{{item.allowSync}}"
+            data-code="{{item.code}}"
+            data-allow-sync="{{item.allowSync}}"
+            bindchange="toggleSync"
+          />
+          <text
+            wx:if="{{item.code !== '888888'}}"
+            class="action-btn danger"
+            data-code="{{item.code}}"
+            bindtap="deleteInvite"
+          >删除</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:else>暂无邀请码</view>
+  </view>
+
+  <view class="section">
+    <text class="section-title">从 Web 导入用户数据</text>
+    <view class="import-form">
+      <input
+        class="modal-input"
+        placeholder="服务地址（如 http://212.85.13.125:3001）"
+        value="{{importBaseUrl}}"
+        bindinput="onImportBaseUrlInput"
+      />
+      <input
+        class="modal-input"
+        placeholder="邀请码（如 680090）"
+        value="{{importCode}}"
+        bindinput="onImportCodeInput"
+      />
+      <button class="btn-primary" bindtap="onImportFromWeb" disabled="{{importLoading}}">
+        {{importLoading ? '导入中...' : '导入并切换为该用户'}}
+      </button>
+    </view>
+  </view>
+
+  <view class="section">
+    <text class="section-title">调试工具</text>
+    <view class="debug-list">
+      <view class="debug-item" bindtap="onAddScore">+ 加 10 积分</view>
+      <view class="debug-item" bindtap="onResetToday">重置今日打卡</view>
+      <view class="debug-item danger" bindtap="onResetAll">重置全部</view>
+    </view>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showCreateModal}}" bindtap="closeCreateModal"></view>
+  <view class="modal" wx:if="{{showCreateModal}}">
+    <view class="modal-title">创建邀请码</view>
+    <input class="modal-input" placeholder="用户名称" value="{{createForm.name}}" bindinput="onCreateNameInput" />
+    <view class="modal-row">
+      <text class="modal-label">跨设备同步</text>
+      <switch checked="{{createForm.allowSync}}" bindchange="onCreateAllowSyncChange" />
+    </view>
+    <view class="new-code" wx:if="{{newCode}}">
+      <text class="new-code-label">新邀请码：</text>
+      <text class="new-code-value" bindtap="copyCode" data-code="{{newCode}}">{{newCode}}</text>
+    </view>
+    <view class="modal-btns">
+      <button class="btn-ghost" bindtap="closeCreateModal">关闭</button>
+      <button class="btn-primary" bindtap="createInvite" disabled="{{loading}}">
+        {{loading ? '创建中...' : '创建'}}
+      </button>
+    </view>
+  </view>
+
+  <view class="version">v1.1</view>
+</view>

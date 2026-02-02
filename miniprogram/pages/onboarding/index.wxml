@@ -1,0 +1,31 @@
+<view class="onboarding-page">
+  <view class="step-header">
+    <text class="title" wx:if="{{step === 1}}">选择性别</text>
+    <text class="title" wx:if="{{step === 2}}">选择年龄段</text>
+    <view class="back-btn" wx:if="{{step === 2}}" bindtap="back">← 返回</view>
+  </view>
+
+  <view class="options" wx:if="{{step === 1}}">
+    <view
+      class="option-card"
+      wx:for="{{genders}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onChooseGender"
+    >
+      <text class="option-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <view class="options" wx:if="{{step === 2}}">
+    <view
+      class="option-card"
+      wx:for="{{ageGroups}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onChooseAge"
+    >
+      <text class="option-label">{{item.label}}</text>
+    </view>
+  </view>
+</view>

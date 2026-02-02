@@ -1,0 +1,54 @@
+.reward-card {
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 32rpx 24rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.reward-card.can-redeem {
+  opacity: 1;
+}
+
+.reward-card:not(.can-redeem) {
+  opacity: 0.85;
+}
+
+.icon-area {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #FFEDD5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+/* 将 Lucide 黑色线条转为橙色描边 */
+.icon-img {
+  width: 64rpx;
+  height: 64rpx;
+  filter: brightness(0) saturate(100%) invert(45%) sepia(90%) saturate(800%) hue-rotate(360deg);
+}
+
+.icon-text {
+  font-size: 52rpx;
+}
+
+.title {
+  font-size: 26rpx;
+  color: var(--text-primary, #1F2937);
+  display: block;
+  margin-bottom: 12rpx;
+  line-height: 1.4;
+  min-height: 72rpx;
+}
+
+.cost {
+  font-size: 26rpx;
+  color: var(--text-primary, #1F2937);
+}

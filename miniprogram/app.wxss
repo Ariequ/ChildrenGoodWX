@@ -1,0 +1,34 @@
+/**app.wxss**/
+page {
+  --brand-yellow: #FFD93D;
+  --brand-blue: #4D96FF;
+  --brand-green: #6BCB77;
+  --brand-red: #FF6B6B;
+  --brand-bg: #F7F9FC;
+  --text-primary: #1F2937;
+  background-color: var(--brand-bg);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+button {
+  background: initial;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button::after {
+  border: none;
+}

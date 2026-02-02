@@ -1,0 +1,82 @@
+/* 组件宿主元素样式，确保占满父容器宽度 */
+:host {
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
+}
+
+.habit-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 28rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.icon-area {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.12), inset 0 1rpx 0 rgba(255, 255, 255, 0.25);
+}
+
+.icon-img {
+  width: 64rpx;
+  height: 64rpx;
+  filter: brightness(0) invert(1);
+}
+
+.icon-text {
+  font-size: 52rpx;
+  color: #fff;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
+  line-height: 1;
+}
+
+.title {
+  font-size: 26rpx;
+  line-height: 1.4;
+  color: var(--text-primary, #1F2937);
+  margin-bottom: 20rpx;
+  min-height: 72rpx;
+  display: block;
+}
+
+.crown {
+  font-size: 28rpx;
+  margin-top: 8rpx;
+}
+
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 12rpx;
+  background: #F3F4F6;
+  border-radius: 24rpx;
+  padding: 16rpx 24rpx;
+  margin-top: auto;
+}
+
+.star {
+  font-size: 40rpx;
+  color: #D1D5DB;
+  transition: transform 0.2s;
+}
+
+.star.filled {
+  color: var(--brand-yellow, #FFD93D);
+}
+
+.star:active {
+  transform: scale(0.95);
+}

@@ -1,0 +1,22 @@
+<view class="rewards-page">
+  <view class="header">
+    <view class="header-left">
+      <text class="header-icon">🚀</text>
+      <text class="logo">萌芽好习惯</text>
+    </view>
+    <view class="score-badge">
+      <text class="score-value">{{score}}</text>
+    </view>
+  </view>
+  <view class="header-subtitle">用你的星星兑换奖励吧!</view>
+  <view class="content">
+    <view class="reward-grid" wx:if="{{rewards.length}}">
+      <view class="reward-grid-item" wx:for="{{rewards}}" wx:key="id">
+        <reward-card reward="{{item}}" score="{{score}}" bind:redeem="onRedeem" />
+      </view>
+    </view>
+    <view class="empty" wx:else>
+      <text>暂无奖励，请在家长页添加</text>
+    </view>
+  </view>
+</view>

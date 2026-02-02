@@ -1,0 +1,18 @@
+<view class="habit-card">
+  <view class="icon-area" style="background-color: {{habit.color || '#4D96FF'}}">
+    <text class="icon-text">{{iconDisplay}}</text>
+  </view>
+  <text class="title">{{habit.title}}</text>
+  <view class="star-rating">
+    <text
+      class="star {{starsToday >= idx ? 'filled' : ''}}"
+      wx:for="{{[1,2,3,4,5]}}"
+      wx:key="*this"
+      wx:for-item="idx"
+      wx:if="{{idx <= (habit.maxStars || 3)}}"
+      data-star="{{idx}}"
+      bindtap="onStarTap"
+    >{{starsToday >= idx ? '★' : '☆'}}</text>
+  </view>
+  <text class="crown" wx:if="{{starsToday === habit.maxStars && habit.maxStars > 0}}">👑</text>
+</view>

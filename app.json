@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/onboarding/index",
+    "pages/habits/index",
+    "pages/rewards/index",
+    "pages/history/index",
+    "pages/admin/index",
+    "pages/system/index"
+  ],
+  "window": {
+    "backgroundColor": "#F7F9FC",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F7F9FC",
+    "navigationBarTitleText": "萌芽好习惯",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#9CA3AF",
+    "selectedColor": "#4D96FF",
+    "list": [
+      {
+        "pagePath": "pages/habits/index",
+        "text": "习惯"
+      },
+      {
+        "pagePath": "pages/rewards/index",
+        "text": "商店"
+      },
+      {
+        "pagePath": "pages/history/index",
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/admin/index",
+        "text": "家长"
+      },
+      {
+        "pagePath": "pages/system/index",
+        "text": "系统"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

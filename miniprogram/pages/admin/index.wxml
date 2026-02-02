@@ -1,0 +1,95 @@
+<view class="admin-page">
+  <view class="header">
+    <text class="logo">家长管理</text>
+  </view>
+  <view class="tabs">
+    <view class="tab {{tab === 'habits' ? 'active' : ''}}" data-tab="habits" bindtap="switchTab">习惯</view>
+    <view class="tab {{tab === 'rewards' ? 'active' : ''}}" data-tab="rewards" bindtap="switchTab">奖励</view>
+  </view>
+  <view class="content">
+    <view class="section" wx:if="{{tab === 'habits'}}">
+      <view class="section-header">
+        <text class="section-title">习惯列表</text>
+        <button class="btn-add" bindtap="openAddHabit">+ 添加</button>
+      </view>
+      <view class="list" wx:if="{{habits.length}}">
+        <view class="list-item" wx:for="{{habits}}" wx:key="id">
+          <view class="item-main">
+            <text class="item-title">{{item.title}}</text>
+            <text class="item-meta">{{item.maxStars}}星/天</text>
+          </view>
+          <view class="item-actions">
+            <text class="action-btn" data-id="{{item.id}}" bindtap="openEditHabit">编辑</text>
+            <text class="action-btn danger" data-id="{{item.id}}" bindtap="deleteHabit">删除</text>
+          </view>
+        </view>
+      </view>
+      <view class="empty" wx:else>暂无习惯</view>
+    </view>
+    <view class="section" wx:if="{{tab === 'rewards'}}">
+      <view class="section-header">
+        <text class="section-title">奖励列表</text>
+        <button class="btn-add" bindtap="openAddReward">+ 添加</button>
+      </view>
+      <view class="list" wx:if="{{rewards.length}}">
+        <view class="list-item" wx:for="{{rewards}}" wx:key="id">
+          <view class="item-main">
+            <text class="item-title">{{item.title}}</text>
+            <text class="item-meta">{{item.cost}}积分</text>
+          </view>
+          <view class="item-actions">
+            <text class="action-btn" data-id="{{item.id}}" bindtap="openEditReward">编辑</text>
+            <text class="action-btn danger" data-id="{{item.id}}" bindtap="deleteReward">删除</text>
+          </view>
+        </view>
+      </view>
+      <view class="empty" wx:else>暂无奖励</view>
+    </view>
+  </view>
+  <view class="footer-actions">
+    <button class="btn-secondary" bindtap="onResetAll">重置全部</button>
+    <button class="btn-danger" bindtap="onLogout">登出</button>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showHabitModal}}" bindtap="closeHabitModal"></view>
+  <view class="modal" wx:if="{{showHabitModal}}">
+    <view class="modal-title">{{editHabit ? '编辑习惯' : '添加习惯'}}</view>
+    <input class="modal-input" placeholder="习惯名称" value="{{habitForm.title}}" bindinput="onHabitTitleInput" />
+    <view class="modal-row">
+      <text class="modal-label">每日星星数</text>
+      <input type="number" class="modal-input small" value="{{habitForm.maxStars}}" bindinput="onHabitMaxStarsInput" />
+    </view>
+    <view class="modal-row">
+      <text class="modal-label">颜色</text>
+      <view class="color-list">
+        <view
+          class="color-dot {{habitForm.color === item ? 'active' : ''}}"
+          wx:for="{{colors}}"
+          wx:key="*this"
+          wx:for-item="item"
+          style="background: {{item}}"
+          data-color="{{item}}"
+          bindtap="onHabitColorTap"
+        ></view>
+      </view>
+    </view>
+    <view class="modal-btns">
+      <button class="btn-ghost" bindtap="closeHabitModal">取消</button>
+      <button class="btn-primary" bindtap="saveHabit">保存</button>
+    </view>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showRewardModal}}" bindtap="closeRewardModal"></view>
+  <view class="modal" wx:if="{{showRewardModal}}">
+    <view class="modal-title">{{editReward ? '编辑奖励' : '添加奖励'}}</view>
+    <input class="modal-input" placeholder="奖励名称" value="{{rewardForm.title}}" bindinput="onRewardTitleInput" />
+    <view class="modal-row">
+      <text class="modal-label">所需积分</text>
+      <input type="number" class="modal-input small" value="{{rewardForm.cost}}" bindinput="onRewardCostInput" />
+    </view>
+    <view class="modal-btns">
+      <button class="btn-ghost" bindtap="closeRewardModal">取消</button>
+      <button class="btn-primary" bindtap="saveReward">保存</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+<view class="tab-bar">
+  <view
+    class="tab-item {{active === index ? 'active' : ''}}"
+    wx:for="{{list}}"
+    wx:key="page"
+    data-url="{{item.page}}"
+    data-index="{{index}}"
+    bindtap="switchTab"
+  >
+    <view class="tab-icon-wrap">
+      <icon wx:if="{{item.iconType}}" type="{{item.iconType}}" size="22" class="tab-icon-native {{active === index ? 'active' : ''}}"/>
+      <image wx:else class="tab-icon-img {{active === index ? 'active' : ''}}" src="{{item.iconPath}}" mode="aspectFit"/>
+    </view>
+    <text class="tab-text">{{item.text}}</text>
+  </view>
+</view>

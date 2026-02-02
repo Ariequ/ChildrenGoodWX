@@ -1,0 +1,137 @@
+.history-page {
+  min-height: 100vh;
+  background: var(--brand-bg, #F7F9FC);
+  padding-bottom: 160rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  padding: 32rpx 48rpx;
+  background: #fff;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.logo {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--text-primary, #1F2937);
+}
+
+.date-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 48rpx;
+  background: #fff;
+  margin: 24rpx 48rpx;
+  border-radius: 48rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.arrow {
+  font-size: 40rpx;
+  color: var(--brand-blue, #4D96FF);
+  padding: 16rpx;
+}
+
+.date-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.date-cn {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--text-primary, #1F2937);
+}
+
+.weekday {
+  font-size: 24rpx;
+  color: #9CA3AF;
+}
+
+.content {
+  padding: 0 48rpx;
+}
+
+.summary {
+  background: #fff;
+  border-radius: 48rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-label {
+  font-size: 28rpx;
+  color: #6B7280;
+}
+
+.summary-value {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.summary-value.positive {
+  color: var(--brand-green, #6BCB77);
+}
+
+.summary-value.negative {
+  color: var(--brand-red, #FF6B6B);
+}
+
+.log-list {
+  background: #fff;
+  border-radius: 48rpx;
+  padding: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.log-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #F3F4F6;
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.log-label {
+  font-size: 28rpx;
+  color: var(--text-primary, #1F2937);
+}
+
+.log-delta {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.log-delta.positive {
+  color: var(--brand-green, #6BCB77);
+}
+
+.log-delta.negative {
+  color: var(--brand-red, #FF6B6B);
+}
+
+.empty {
+  text-align: center;
+  padding: 80rpx;
+  color: #9CA3AF;
+  font-size: 28rpx;
+}
+
+.version {
+  text-align: center;
+  font-size: 24rpx;
+  color: #9CA3AF;
+  padding: 24rpx;
+}

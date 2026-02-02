@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "habit-card": "/components/habit-card/index"
+  },
+  "navigationBarTitleText": ""
+}

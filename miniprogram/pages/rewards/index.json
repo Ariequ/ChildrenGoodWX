@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "reward-card": "/components/reward-card/index"
+  },
+  "navigationBarTitleText": "商店"
+}

@@ -1,0 +1,29 @@
+<view class="history-page">
+  <view class="header">
+    <text class="logo">萌芽好习惯</text>
+  </view>
+  <view class="date-nav">
+    <view class="arrow" bindtap="onPrevDate">←</view>
+    <view class="date-display">
+      <text class="date-cn">{{dateDisplay}}</text>
+      <text class="weekday">{{weekdayDisplay}}</text>
+    </view>
+    <view class="arrow" bindtap="onNextDate">→</view>
+  </view>
+  <view class="content">
+    <view class="summary" wx:if="{{scoreLogs.length}}">
+      <text class="summary-label">当日积分变化</text>
+      <text class="summary-value {{totalDelta >= 0 ? 'positive' : 'negative'}}">{{totalDelta >= 0 ? '+' : ''}}{{totalDelta}}</text>
+    </view>
+    <view class="log-list" wx:if="{{scoreLogs.length}}">
+      <view class="log-item" wx:for="{{scoreLogs}}" wx:key="id">
+        <text class="log-label">{{item.label}}</text>
+        <text class="log-delta {{item.delta >= 0 ? 'positive' : 'negative'}}">{{item.deltaStr}}</text>
+      </view>
+    </view>
+    <view class="empty" wx:else>
+      <text>该日暂无记录</text>
+    </view>
+  </view>
+  <view class="version">v1.1</view>
+</view>

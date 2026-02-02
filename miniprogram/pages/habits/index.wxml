@@ -1,0 +1,24 @@
+<view class="habits-page">
+  <view class="header">
+    <view class="header-left">
+      <text class="header-icon">🚀</text>
+      <text class="logo">萌芽好习惯</text>
+    </view>
+    <view class="score-badge">
+      <text class="score-value">{{score}}</text>
+    </view>
+  </view>
+  <view class="content">
+    <view class="habit-grid" wx:if="{{habitRows.length}}">
+      <view class="habit-row {{row.isBig ? 'big-row' : ''}}" wx:for="{{habitRows}}" wx:for-item="row" wx:key="rowIndex">
+        <view class="habit-grid-item {{row.isBig ? 'big-item' : ''}}" wx:for="{{row.items}}" wx:for-item="h" wx:key="id">
+          <habit-card wx:if="{{!h._empty}}" habit="{{h}}" bind:starChange="onStarChange" />
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:else>
+      <text>暂无习惯，请在家长页添加</text>
+    </view>
+  </view>
+  <view class="version">v1.1</view>
+</view>
