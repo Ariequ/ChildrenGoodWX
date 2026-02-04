@@ -43,12 +43,38 @@
   font-size: 26rpx;
   color: var(--text-primary, #1F2937);
   display: block;
-  margin-bottom: 12rpx;
+  margin-bottom: 20rpx;
   line-height: 1.4;
   min-height: 72rpx;
 }
 
-.cost {
+.redeem-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: 14rpx 32rpx;
+  border-radius: 999rpx;
+  background: var(--brand-blue, #4D96FF);
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.redeem-btn:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+.cost-num {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.cost-star {
+  font-size: 24rpx;
+}
+
+.cost-text {
   font-size: 26rpx;
-  color: var(--text-primary, #1F2937);
+  color: #9CA3AF;
 }

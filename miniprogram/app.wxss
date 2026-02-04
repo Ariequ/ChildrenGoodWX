@@ -1,6 +1,6 @@
 /**app.wxss**/
 page {
-  --brand-yellow: #FFD93D;
+  --brand-yellow: #FFDA3D;
   --brand-blue: #4D96FF;
   --brand-green: #6BCB77;
   --brand-red: #FF6B6B;

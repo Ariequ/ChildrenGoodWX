@@ -1,8 +1,12 @@
-<view class="reward-card {{canRedeem ? 'can-redeem' : ''}}" bindtap="onRedeem">
+<view class="reward-card {{canRedeem ? 'can-redeem' : ''}}">
   <view class="icon-area">
     <image wx:if="{{iconPath}}" class="icon-img" src="{{iconPath}}" mode="aspectFit" />
     <text wx:else class="icon-text">{{iconDisplay}}</text>
   </view>
   <text class="title">{{reward.title}}</text>
-  <text class="cost">{{reward.cost || 0}} 积分</text>
+  <view class="redeem-btn" wx:if="{{canRedeem}}" bindtap="onRedeem">
+    <text class="cost-num">{{reward.cost || 0}}</text>
+    <text class="cost-star">★</text>
+  </view>
+  <text class="cost-text" wx:else>{{reward.cost || 0}} ★</text>
 </view>

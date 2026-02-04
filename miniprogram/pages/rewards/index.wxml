@@ -5,6 +5,7 @@
       <text class="logo">萌芽好习惯</text>
     </view>
     <view class="score-badge">
+      <text class="score-star">★</text>
       <text class="score-value">{{score}}</text>
     </view>
   </view>
@@ -17,6 +18,37 @@
     </view>
     <view class="empty" wx:else>
       <text>暂无奖励，请在家长页添加</text>
+    </view>
+    <view class="reward-logs" wx:if="{{rewardLogs.length}}">
+      <view class="reward-logs-header">
+        <text class="reward-logs-icon">🕐</text>
+        <text class="reward-logs-title">兑换历史</text>
+      </view>
+      <view class="reward-log-card">
+        <view class="reward-log-item" wx:for="{{rewardLogs}}" wx:key="id">
+          <view class="reward-log-avatar">
+            <text>{{item.iconDisplay}}</text>
+          </view>
+          <view class="reward-log-info">
+            <text class="reward-log-label">{{item.rewardTitle}}</text>
+            <text class="reward-log-date">{{item.dateDisplay}}</text>
+          </view>
+          <text class="reward-log-cost">-{{item.cost}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 兑换确认弹窗 -->
+  <view class="confirm-mask" wx:if="{{showConfirm}}" bindtap="onConfirmCancel">
+    <view class="confirm-modal" catchtap="">
+      <view class="confirm-icon">🎁</view>
+      <text class="confirm-title">兑换奖励?</text>
+      <text class="confirm-desc">确定要花费 {{confirmReward.cost}} 颗星星兑换 "{{confirmReward.title}}" 吗?</text>
+      <view class="confirm-btns">
+        <view class="confirm-btn cancel" bindtap="onConfirmCancel">再想想</view>
+        <view class="confirm-btn ok" bindtap="onConfirmOk">是的，我要换！</view>
+      </view>
     </view>
   </view>
 </view>

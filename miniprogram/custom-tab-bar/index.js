@@ -5,7 +5,7 @@ Component({
     active: 0,
     list: [
       { page: '/pages/habits/index', text: '习惯', iconType: 'success_no_circle', iconPath: '' },
-      { page: '/pages/rewards/index', text: '商店', iconType: '', iconPath: '/images/icons/goods.png' },
+      { page: '/pages/rewards/index', text: '商店', iconType: '', iconPath: '/images/icons/lucide/gift.svg' },
       { page: '/pages/history/index', text: '记录', iconType: '', iconPath: '/images/icons/home.png' },
       { page: '/pages/admin/index', text: '家长', iconType: '', iconPath: '/images/icons/setting.svg' },
       { page: '/pages/system/index', text: '系统', iconType: '', iconPath: '/images/icons/usercenter.png' },
@@ -39,7 +39,7 @@ Component({
       } else {
         list = [
           { page: '/pages/habits/index', text: '习惯', iconType: 'success_no_circle', iconPath: '' },
-          { page: '/pages/rewards/index', text: '商店', iconType: '', iconPath: '/images/icons/goods.png' },
+          { page: '/pages/rewards/index', text: '商店', iconType: '', iconPath: '/images/icons/lucide/gift.svg' },
           { page: '/pages/history/index', text: '记录', iconType: '', iconPath: '/images/icons/home.png' },
           { page: '/pages/admin/index', text: '家长', iconType: '', iconPath: '/images/icons/setting.svg' },
           { page: '/pages/system/index', text: '系统', iconType: '', iconPath: '/images/icons/usercenter.png' },

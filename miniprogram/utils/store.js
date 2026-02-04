@@ -27,6 +27,8 @@ function genId() {
 
 // 单例 Store
 let _store = null;
+// 数据版本号，每次数据变化时自增
+let _dataVersion = 0;
 
 function loadFromStorage() {
   try {
@@ -46,9 +48,17 @@ function loadFromStorage() {
 function saveToStorage(data) {
   try {
     wx.setStorageSync(STORAGE_KEY, JSON.stringify(data));
+    _dataVersion++; // 数据变化时自增版本号
   } catch (e) {
     console.error('[Store] save error', e);
   }
+}
+
+/**
+ * 获取当前数据版本号
+ */
+function getDataVersion() {
+  return _dataVersion;
 }
 
 function getStore() {
@@ -152,7 +162,7 @@ function completeOnboarding(childProfile, habits, rewards) {
 /**
  * 习惯打卡：更新 logs、scoreLogs、score
  * @param {string} habitId
- * @param {number} stars 1~maxStars
+ * @param {number} stars 0~maxStars，0 表示取消当日打卡
  */
 function logHabitStars(habitId, stars) {
   const user = getCurrentUser();
@@ -161,10 +171,26 @@ function logHabitStars(habitId, stars) {
   const ud = store.userData[user.code];
   if (!ud) return { ok: false };
   const habit = ud.habits.find((h) => h.id === habitId);
-  if (!habit || stars < 1 || stars > habit.maxStars) return { ok: false };
+  if (!habit || stars < 0 || stars > habit.maxStars) return { ok: false };
   const date = today();
   const existing = ud.logs.find((l) => l.habitId === habitId && l.date === date);
   const oldStars = existing ? existing.stars : 0;
+  if (stars === 0) {
+    if (!existing) return { ok: true };
+    ud.logs = ud.logs.filter((l) => !(l.habitId === habitId && l.date === date));
+    ud.scoreLogs.push({
+      id: genId(),
+      source: habitId,
+      type: 'habit',
+      sourceTitle: habit.title,
+      delta: -oldStars,
+      timestamp: Date.now(),
+      date,
+    });
+    ud.score -= oldStars;
+    saveToStorage(store);
+    return { ok: true, delta: -oldStars, isFull: false };
+  }
   const delta = stars - oldStars;
   if (existing) {
     existing.stars = stars;
@@ -553,6 +579,7 @@ function createNewUserWithDefaultData() {
 module.exports = {
   getCurrentUser,
   getCurrentUserData,
+  getDataVersion,
   loadUser,
   syncToUser,
   setCurrentUser,

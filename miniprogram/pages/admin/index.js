@@ -9,6 +9,7 @@ const {
   removeReward,
   logout,
   resetAll,
+  getDataVersion,
 } = require('../../utils/store');
 const { syncIfEnabled } = require('../../utils/sync');
 const { HABIT_COLORS } = require('../../utils/constants');
@@ -32,6 +33,8 @@ Page({
     colors: HABIT_COLORS,
   },
 
+  _lastVersion: -1,
+
   onLoad() {
     this.checkAuth();
     this.loadData();
@@ -40,7 +43,10 @@ Page({
   onShow() {
     const tabBar = this.getTabBar && this.getTabBar();
     if (tabBar && tabBar.updateActive) tabBar.updateActive();
-    this.loadData();
+    // 只有数据版本变化时才重新加载
+    if (getDataVersion() !== this._lastVersion) {
+      this.loadData();
+    }
   },
 
   checkAuth() {
@@ -52,6 +58,7 @@ Page({
   },
 
   loadData() {
+    this._lastVersion = getDataVersion();
     const ud = getCurrentUserData();
     if (!ud) return;
     this.setData({
@@ -266,5 +273,18 @@ Page({
         }
       },
     });
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+      path: '/pages/login/index',
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+    };
   },
 });

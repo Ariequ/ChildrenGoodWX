@@ -1,4 +1,4 @@
-const { getCurrentUser, getCurrentUserData, logHabitStars, getHabitStarsToday, migrateHabitIcons } = require('../../utils/store');
+const { getCurrentUser, getCurrentUserData, logHabitStars, getHabitStarsToday, migrateHabitIcons, getDataVersion } = require('../../utils/store');
 const { syncIfEnabled } = require('../../utils/sync');
 
 Page({
@@ -7,6 +7,8 @@ Page({
     habitRows: [],
     score: 0,
   },
+
+  _lastVersion: -1,
 
   onLoad() {
     this.checkAuth();
@@ -18,7 +20,10 @@ Page({
   onShow() {
     const tabBar = this.getTabBar && this.getTabBar();
     if (tabBar && tabBar.updateActive) tabBar.updateActive();
-    this.loadData();
+    // 只有数据版本变化时才重新加载
+    if (getDataVersion() !== this._lastVersion) {
+      this.loadData();
+    }
   },
 
   checkAuth() {
@@ -30,6 +35,7 @@ Page({
   },
 
   loadData() {
+    this._lastVersion = getDataVersion();
     const ud = getCurrentUserData();
     if (!ud) return;
     const list = (ud.habits || []).map((h) => {
@@ -70,5 +76,18 @@ Page({
       syncIfEnabled();
       this.loadData();
     }
+  },
+
+  onShareAppMessage() {
+    return {
+      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+      path: '/pages/login/index',
+    };
+  },
+
+  onShareTimeline() {
+    return {
+      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+    };
   },
 });

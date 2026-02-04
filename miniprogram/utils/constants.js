@@ -7,7 +7,7 @@ module.exports = {
   STORAGE_KEY: 'habit-builder-storage',
   APP_VERSION: 'v1.1',
   COLORS: {
-    brandYellow: '#FFD93D',
+    brandYellow: '#FFDA3D',
     brandBlue: '#4D96FF',
     brandGreen: '#6BCB77',
     brandRed: '#FF6B6B',

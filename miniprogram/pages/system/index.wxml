@@ -58,7 +58,7 @@
   <view class="section">
     <text class="section-title">调试工具</text>
     <view class="debug-list">
-      <view class="debug-item" bindtap="onAddScore">+ 加 10 积分</view>
+      <view class="debug-item" bindtap="onAddScore">+ 加 10 颗星星</view>
       <view class="debug-item" bindtap="onResetToday">重置今日打卡</view>
       <view class="debug-item danger" bindtap="onResetAll">重置全部</view>
     </view>
@@ -83,6 +83,4 @@
       </button>
     </view>
   </view>
-
-  <view class="version">v1.1</view>
 </view>

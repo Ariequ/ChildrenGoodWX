@@ -1,7 +1,7 @@
 <view class="login-page">
   <view class="logo-area">
     <text class="logo-text">萌芽好习惯</text>
-    <text class="subtitle">儿童习惯打卡 · 积分兑换奖励</text>
+    <text class="subtitle">儿童习惯打卡 · 星星兑换奖励</text>
   </view>
   <view class="form-area" wx:if="{{showForm}}">
     <input

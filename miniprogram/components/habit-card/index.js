@@ -31,6 +31,7 @@ Component({
   data: {
     starsToday: 0,
     iconDisplay: '📖',
+    animatingStar: 0,
   },
 
   observers: {
@@ -62,7 +63,12 @@ Component({
       const habit = this.properties.habit;
       const maxStars = habit.maxStars || 3;
       if (star > maxStars) return;
-      this.triggerEvent('starChange', { habitId: habit.id, stars: star });
+      this.setData({ animatingStar: star });
+      const self = this;
+      setTimeout(function () { self.setData({ animatingStar: 0 }); }, 350);
+      const current = this.data.starsToday;
+      const newStars = current === star ? 0 : star;
+      this.triggerEvent('starChange', { habitId: habit.id, stars: newStars });
     },
   },
 });

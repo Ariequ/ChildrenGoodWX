@@ -16,7 +16,9 @@
         <view class="list-item" wx:for="{{habits}}" wx:key="id">
           <view class="item-main">
             <text class="item-title">{{item.title}}</text>
-            <text class="item-meta">{{item.maxStars}}星/天</text>
+            <view class="item-stars">
+              <text class="star-icon" wx:for="{{item.maxStars}}" wx:key="*this">★</text>
+            </view>
           </view>
           <view class="item-actions">
             <text class="action-btn" data-id="{{item.id}}" bindtap="openEditHabit">编辑</text>
@@ -35,7 +37,7 @@
         <view class="list-item" wx:for="{{rewards}}" wx:key="id">
           <view class="item-main">
             <text class="item-title">{{item.title}}</text>
-            <text class="item-meta">{{item.cost}}积分</text>
+            <text class="item-meta">{{item.cost}} ★</text>
           </view>
           <view class="item-actions">
             <text class="action-btn" data-id="{{item.id}}" bindtap="openEditReward">编辑</text>
@@ -84,7 +86,7 @@
     <view class="modal-title">{{editReward ? '编辑奖励' : '添加奖励'}}</view>
     <input class="modal-input" placeholder="奖励名称" value="{{rewardForm.title}}" bindinput="onRewardTitleInput" />
     <view class="modal-row">
-      <text class="modal-label">所需积分</text>
+      <text class="modal-label">所需星星</text>
       <input type="number" class="modal-input small" value="{{rewardForm.cost}}" bindinput="onRewardCostInput" />
     </view>
     <view class="modal-btns">

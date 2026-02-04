@@ -3,27 +3,96 @@
     <text class="logo">萌芽好习惯</text>
   </view>
   <view class="date-nav">
-    <view class="arrow" bindtap="onPrevDate">←</view>
-    <view class="date-display">
-      <text class="date-cn">{{dateDisplay}}</text>
+    <view class="arrow {{hasPrevRecord ? '' : 'hidden'}}" bindtap="onPrevDate">‹</view>
+    <view class="date-display" bindtap="openCalendar">
+      <view class="date-row">
+        <text class="date-cn">{{dateDisplay}}</text>
+        <text class="calendar-icon">📅</text>
+      </view>
       <text class="weekday">{{weekdayDisplay}}</text>
     </view>
-    <view class="arrow" bindtap="onNextDate">→</view>
+    <view class="arrow {{hasNextRecord ? '' : 'hidden'}}" bindtap="onNextDate">›</view>
   </view>
   <view class="content">
-    <view class="summary" wx:if="{{scoreLogs.length}}">
-      <text class="summary-label">当日积分变化</text>
-      <text class="summary-value {{totalDelta >= 0 ? 'positive' : 'negative'}}">{{totalDelta >= 0 ? '+' : ''}}{{totalDelta}}</text>
-    </view>
-    <view class="log-list" wx:if="{{scoreLogs.length}}">
-      <view class="log-item" wx:for="{{scoreLogs}}" wx:key="id">
-        <text class="log-label">{{item.label}}</text>
-        <text class="log-delta {{item.delta >= 0 ? 'positive' : 'negative'}}">{{item.deltaStr}}</text>
+    <view class="record-card" wx:if="{{scoreLogs.length}}">
+      <view class="summary">
+        <text class="summary-label">当天总计</text>
+        <view class="summary-right">
+          <text class="summary-value {{totalDelta >= 0 ? 'positive' : ''}}">{{totalDelta >= 0 ? '+' : ''}}{{totalDelta}}</text>
+          <text class="summary-star">★</text>
+        </view>
+      </view>
+      <view class="log-list">
+        <view class="log-item" wx:for="{{scoreLogs}}" wx:key="id">
+          <view class="log-icon {{item.delta > 0 ? 'icon-star' : 'icon-minus'}}">
+            <text wx:if="{{item.delta > 0}}">★</text>
+            <text wx:else>—</text>
+          </view>
+          <view class="log-info">
+            <text class="log-label">{{item.label}}</text>
+            <text class="log-sub">最终得分</text>
+          </view>
+          <text class="log-delta {{item.delta > 0 ? 'positive' : ''}}">{{item.delta > 0 ? '+' : ''}}{{item.delta}}</text>
+        </view>
       </view>
     </view>
     <view class="empty" wx:else>
       <text>该日暂无记录</text>
     </view>
   </view>
-  <view class="version">v1.1</view>
+
+  <!-- 日历弹窗 -->
+  <view class="calendar-mask" wx:if="{{showCalendar}}" bindtap="closeCalendar">
+    <view class="calendar-modal" catchtap="">
+      <view class="calendar-header">
+        <view class="calendar-arrow" bindtap="onCalendarPrevMonth">‹</view>
+        <text class="calendar-title">{{calendarYear}}年 {{calendarMonth}}月</text>
+        <view class="calendar-arrow" bindtap="onCalendarNextMonth">›</view>
+      </view>
+      <view class="calendar-weekdays">
+        <text class="calendar-weekday">一</text>
+        <text class="calendar-weekday">二</text>
+        <text class="calendar-weekday">三</text>
+        <text class="calendar-weekday">四</text>
+        <text class="calendar-weekday">五</text>
+        <text class="calendar-weekday">六</text>
+        <text class="calendar-weekday">日</text>
+      </view>
+      <view class="calendar-days">
+        <view
+          class="calendar-day {{item.inMonth ? '' : 'out-month'}} {{item.isToday ? 'today' : ''}} {{item.isSelected ? 'selected' : ''}}"
+          wx:for="{{calendarDays}}"
+          wx:key="index"
+          data-date="{{item.date}}"
+          bindtap="onCalendarDayTap"
+        >{{item.day}}</view>
+      </view>
+      <view class="calendar-footer">
+        <view class="calendar-cancel" bindtap="closeCalendar">取消</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- AI 总结弹窗 -->
+  <view class="ai-modal-mask" wx:if="{{showSummary}}" bindtap="closeSummary">
+    <view class="ai-modal" catchtap="">
+      <view class="ai-modal-header">
+        <text class="ai-modal-icon">🌱</text>
+        <text class="ai-modal-title">今日总结</text>
+        <view class="ai-modal-close" bindtap="closeSummary">×</view>
+      </view>
+      <view class="ai-modal-body">
+        <view class="ai-loading" wx:if="{{summaryLoading && !summaryText}}">
+          <view class="ai-loading-dot"></view>
+          <view class="ai-loading-dot"></view>
+          <view class="ai-loading-dot"></view>
+        </view>
+        <text class="ai-summary-text">{{summaryText}}</text>
+        <view class="ai-typing" wx:if="{{summaryLoading && summaryText}}">|</view>
+      </view>
+      <view class="ai-modal-footer">
+        <button class="ai-modal-btn" bindtap="closeSummary">知道啦</button>
+      </view>
+    </view>
+  </view>
 </view>

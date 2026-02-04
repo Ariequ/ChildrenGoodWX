@@ -68,4 +68,19 @@ function compareDate(a, b) {
   return 0;
 }
 
-module.exports = { formatDate, formatDateCn, formatWeekday, today, addDays, compareDate };
+/**
+ * 格式化时间戳为 "M月d日 HH:mm"
+ * @param {number} timestamp 毫秒时间戳
+ * @returns {string}
+ */
+function formatDateTime(timestamp) {
+  if (!timestamp) return '';
+  const d = new Date(timestamp);
+  const m = d.getMonth() + 1;
+  const day = d.getDate();
+  const h = String(d.getHours()).padStart(2, '0');
+  const min = String(d.getMinutes()).padStart(2, '0');
+  return `${m}月${day}日 ${h}:${min}`;
+}
+
+module.exports = { formatDate, formatDateCn, formatWeekday, today, addDays, compareDate, formatDateTime };

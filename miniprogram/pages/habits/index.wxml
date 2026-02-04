@@ -1,10 +1,13 @@
 <view class="habits-page">
   <view class="header">
     <view class="header-left">
-      <text class="header-icon">🚀</text>
-      <text class="logo">萌芽好习惯</text>
+      <view class="header-icon-box">
+        <text class="header-icon">✓</text>
+      </view>
+      <text class="logo">习惯小达人</text>
     </view>
     <view class="score-badge">
+      <text class="score-star">★</text>
       <text class="score-value">{{score}}</text>
     </view>
   </view>
@@ -20,5 +23,4 @@
       <text>暂无习惯，请在家长页添加</text>
     </view>
   </view>
-  <view class="version">v1.1</view>
 </view>
