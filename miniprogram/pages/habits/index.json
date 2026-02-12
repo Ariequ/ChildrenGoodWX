@@ -2,5 +2,5 @@
   "usingComponents": {
     "habit-card": "/components/habit-card/index"
   },
-  "navigationBarTitleText": ""
+  "navigationBarTitleText": "萌芽好习惯"
 }

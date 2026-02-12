@@ -1,8 +1,8 @@
 <view class="rewards-page">
   <view class="header">
     <view class="header-left">
-      <text class="header-icon">🚀</text>
-      <text class="logo">萌芽好习惯</text>
+      <image class="header-icon-img" src="/images/icons/lucide/gift.svg" mode="aspectFit" />
+      <text class="page-title">商店</text>
     </view>
     <view class="score-badge">
       <text class="score-star">★</text>

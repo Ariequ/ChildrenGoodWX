@@ -1,6 +1,9 @@
 <view class="admin-page">
   <view class="header">
-    <text class="logo">家长管理</text>
+    <view class="header-left">
+      <image class="header-icon-img" src="/images/icons/setting.svg" mode="aspectFit" />
+      <text class="page-title">家长</text>
+    </view>
   </view>
   <view class="tabs">
     <view class="tab {{tab === 'habits' ? 'active' : ''}}" data-tab="habits" bindtap="switchTab">习惯</view>

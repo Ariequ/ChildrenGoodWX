@@ -355,7 +355,7 @@ Page({
   onShareAppMessage() {
     return {
       title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
-      path: '/pages/login/index',
+      path: '/pages/habits/index',
     };
   },
 

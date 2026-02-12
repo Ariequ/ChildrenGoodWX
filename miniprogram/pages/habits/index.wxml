@@ -1,10 +1,8 @@
 <view class="habits-page">
   <view class="header">
     <view class="header-left">
-      <view class="header-icon-box">
-        <text class="header-icon">✓</text>
-      </view>
-      <text class="logo">习惯小达人</text>
+      <icon type="success_no_circle" size="24" color="#4D96FF" />
+      <text class="page-title">习惯</text>
     </view>
     <view class="score-badge">
       <text class="score-star">★</text>
@@ -20,7 +18,26 @@
       </view>
     </view>
     <view class="empty" wx:else>
-      <text>暂无习惯，请在家长页添加</text>
+      <view class="welcome-card">
+        <text class="welcome-icon">🌱</text>
+        <text class="welcome-title">萌芽好习惯</text>
+        <text class="welcome-subtitle">AI智能总结，让好习惯养成更有趣</text>
+        <view class="feature-list">
+          <view class="feature-item">
+            <text class="feature-icon">⭐</text>
+            <text class="feature-text">星星打卡，激励孩子每日坚持</text>
+          </view>
+          <view class="feature-item">
+            <text class="feature-icon">🎁</text>
+            <text class="feature-text">积攒星星，兑换心仪奖励</text>
+          </view>
+          <view class="feature-item">
+            <text class="feature-icon">🤖</text>
+            <text class="feature-text">AI智能总结，记录成长点滴</text>
+          </view>
+        </view>
+        <text class="welcome-tip">👇 点击下方「前往小程序」开始使用</text>
+      </view>
     </view>
   </view>
 </view>

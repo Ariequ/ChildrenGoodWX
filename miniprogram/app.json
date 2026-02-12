@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/habits/index",
     "pages/login/index",
     "pages/onboarding/index",
-    "pages/habits/index",
     "pages/rewards/index",
     "pages/history/index",
     "pages/admin/index",

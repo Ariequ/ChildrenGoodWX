@@ -6,15 +6,57 @@
   box-sizing: border-box;
 }
 
+.brand-bar {
+  background: #fff;
+  padding: 24rpx 48rpx 0;
+}
+
+.brand-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1F2937;
+}
+
 .header {
-  padding: 32rpx 48rpx;
+  display: flex;
+  align-items: center;
+  padding: 24rpx 48rpx 32rpx;
   background: #fff;
   box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
 }
 
-.logo {
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.header-icon-box {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 16rpx;
+  background: var(--brand-blue, #4D96FF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-icon-box.icon-purple {
+  background: #8B5CF6;
+}
+
+.header-icon {
+  font-size: 32rpx;
+}
+
+.header-icon-img {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.page-title {
   font-size: 36rpx;
-  font-weight: bold;
+  font-weight: 600;
   color: var(--text-primary, #1F2937);
 }
 
