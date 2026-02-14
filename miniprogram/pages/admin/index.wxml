@@ -52,6 +52,7 @@
     </view>
   </view>
   <view class="footer-actions">
+    <button class="btn-secondary" bindtap="onGoOfficial">公众号与社区</button>
     <button class="btn-secondary" bindtap="onResetAll">重置全部</button>
     <button class="btn-danger" bindtap="onLogout">登出</button>
   </view>

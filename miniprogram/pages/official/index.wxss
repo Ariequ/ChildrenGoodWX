@@ -1,0 +1,72 @@
+.official-page {
+  min-height: 100vh;
+  background: var(--brand-bg, #F7F9FC);
+  padding-bottom: 80rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  padding: 32rpx 48rpx;
+  background: #fff;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.logo {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--text-primary, #1F2937);
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.desc {
+  font-size: 26rpx;
+  color: #6B7280;
+  line-height: 1.5;
+}
+
+.section {
+  background: #fff;
+  border-radius: 48rpx;
+  padding: 32rpx;
+  margin: 32rpx 48rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: var(--text-primary, #1F2937);
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.section-desc {
+  font-size: 26rpx;
+  color: #6B7280;
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.section-tip {
+  font-size: 24rpx;
+  color: #9CA3AF;
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 24rpx;
+}
+
+.btn-publish {
+  width: 100%;
+  padding: 28rpx;
+  font-size: 30rpx;
+  background: var(--brand-blue, #4D96FF);
+  color: #fff;
+  border-radius: 32rpx;
+  border: none;
+}
+
+.btn-publish::after {
+  border: none;
+}

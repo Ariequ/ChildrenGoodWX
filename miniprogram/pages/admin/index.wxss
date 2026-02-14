@@ -190,6 +190,14 @@
   gap: 24rpx;
 }
 
+.btn-secondary,
+.btn-danger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+}
+
 .btn-secondary {
   flex: 1;
   padding: 28rpx;

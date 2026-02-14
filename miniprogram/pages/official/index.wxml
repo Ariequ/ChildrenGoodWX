@@ -1,0 +1,26 @@
+<view class="official-page">
+  <view class="header">
+    <text class="logo">公众号与社区</text>
+    <text class="desc">参与 #来微信做个小程序 话题，分享你的使用心得</text>
+  </view>
+
+  <view class="section">
+    <text class="section-title">发表到公众号</text>
+    <text class="section-desc">一键拉起公众号图文发表页，标题与正文会同步过去，发表后可带小程序来源。</text>
+    <text class="section-tip">请在手机微信中打开小程序使用本功能（模拟器/开发工具不支持）</text>
+    <button class="btn-primary btn-publish" bindtap="onShareToOfficialAccount">
+      发表到公众号
+    </button>
+  </view>
+
+  <view class="section">
+    <text class="section-title">社区图文</text>
+    <text class="section-desc">同话题下的公众号图文会展示在这里，点击可阅读</text>
+    <official-account-publish
+      topic="来微信做个小程序"
+      limit="{{6}}"
+      placeholder="来写下第一条吧～"
+      path="/pages/habits/index"
+    />
+  </view>
+</view>

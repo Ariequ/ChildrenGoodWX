@@ -259,6 +259,10 @@ Page({
     });
   },
 
+  onGoOfficial() {
+    wx.navigateTo({ url: '/pages/official/index' });
+  },
+
   onResetAll() {
     wx.showModal({
       title: '重置全部',

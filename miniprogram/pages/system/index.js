@@ -213,6 +213,10 @@ Page({
   onImportCodeInput(e) {
     this.setData({ importCode: (e.detail && e.detail.value) || '' });
   },
+  onGoOfficial() {
+    wx.navigateTo({ url: '/pages/official/index' });
+  },
+
   onImportFromWeb() {
     const baseUrl = (this.data.importBaseUrl || '').replace(/\/+$/, '');
     const code = (this.data.importCode || '').trim();

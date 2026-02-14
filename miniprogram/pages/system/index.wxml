@@ -56,6 +56,13 @@
   </view>
 
   <view class="section">
+    <text class="section-title">公众号与社区</text>
+    <view class="debug-list">
+      <view class="debug-item" bindtap="onGoOfficial">发表到公众号 / 查看社区图文</view>
+    </view>
+  </view>
+
+  <view class="section">
     <text class="section-title">调试工具</text>
     <view class="debug-list">
       <view class="debug-item" bindtap="onAddScore">+ 加 10 颗星星</view>
