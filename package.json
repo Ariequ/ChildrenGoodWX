@@ -1,0 +1,13 @@
+{
+  "name": "children-good-wx",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "node scripts/deploy-cloud.js",
+    "deploy:habit": "node scripts/deploy-cloud.js habitApi",
+    "upload": "node --require ./scripts/fix-localstorage.js scripts/upload.js"
+  },
+  "devDependencies": {
+    "miniprogram-ci": "^2.1.31"
+  }
+}
