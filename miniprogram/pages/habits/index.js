@@ -2,6 +2,7 @@ const { getCurrentUser, getCurrentUserData, logHabitStars, getHabitStarsToday, m
 const { syncIfEnabled } = require('../../utils/sync');
 const { getAllHabitStreaks, checkStreakAchievement } = require('../../utils/streak');
 const { requestSubscribe } = require('../../utils/subscribe');
+const { getShareTitle, generateShareImage } = require('../../utils/share');
 
 Page({
   data: {
@@ -17,6 +18,7 @@ Page({
 
   _lastVersion: -1,
   _achievementTimer: null,
+  _shareImagePath: null,
 
   onLoad() {
     this.checkAuth();
@@ -25,12 +27,21 @@ Page({
     this.loadData();
   },
 
+  onReady() {
+    // Canvas 节点在 onReady 后才可用
+    this._pregenShareImage();
+  },
+
   onShow() {
     const tabBar = this.getTabBar && this.getTabBar();
     if (tabBar && tabBar.updateActive) tabBar.updateActive();
     // 只有数据版本变化时才重新加载
     if (getDataVersion() !== this._lastVersion) {
       this.loadData();
+      // onReady 之后再刷新分享图
+      if (this._canvasReady) {
+        this._pregenShareImage();
+      }
     }
   },
 
@@ -132,16 +143,29 @@ Page({
     this.setData({ showAchievement: false });
   },
 
+  _pregenShareImage() {
+    this._canvasReady = true;
+    var self = this;
+    generateShareImage(this).then(function (path) {
+      console.log('[Share] pregenShareImage result:', path);
+      self._shareImagePath = path;
+    });
+  },
+
   onShareAppMessage() {
-    return {
-      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+    var result = {
+      title: getShareTitle(),
       path: '/pages/habits/index',
     };
+    if (this._shareImagePath) {
+      result.imageUrl = this._shareImagePath;
+    }
+    return result;
   },
 
   onShareTimeline() {
     return {
-      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+      title: getShareTitle(),
     };
   },
 });

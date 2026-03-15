@@ -494,10 +494,12 @@
 
 .ai-modal-footer {
   padding: 16rpx 40rpx 40rpx;
+  display: flex;
+  gap: 20rpx;
 }
 
 .ai-modal-btn {
-  width: 100%;
+  flex: 1;
   height: 88rpx;
   line-height: 88rpx;
   background: linear-gradient(135deg, #6BCB77 0%, #4D96FF 100%);
@@ -513,6 +515,11 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+}
+
+.ai-modal-btn.share {
+  background: linear-gradient(135deg, #FFDA3D 0%, #FF9F43 100%);
+  box-shadow: 0 8rpx 24rpx rgba(255, 159, 67, 0.3);
 }
 
 .ai-modal-btn:active {

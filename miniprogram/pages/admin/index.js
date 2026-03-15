@@ -13,6 +13,7 @@ const {
 } = require('../../utils/store');
 const { syncIfEnabled } = require('../../utils/sync');
 const { HABIT_COLORS } = require('../../utils/constants');
+const { getShareTitle } = require('../../utils/share');
 
 const ICON_OPTIONS = [
   'Sun', 'Smile', 'Shirt', 'Utensils', 'Moon', 'Brain', 'Box', 'Scroll',
@@ -281,14 +282,14 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+      title: getShareTitle(),
       path: '/pages/habits/index',
     };
   },
 
   onShareTimeline() {
     return {
-      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+      title: getShareTitle(),
     };
   },
 });

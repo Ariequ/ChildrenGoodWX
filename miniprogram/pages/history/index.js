@@ -1,6 +1,7 @@
 const { getCurrentUser, getCurrentUserData, getScoreLogsByDate, setScoreLogSourceTitle, getDataVersion } = require('../../utils/store');
 const { today, formatDateCn, formatWeekday, addDays } = require('../../utils/date');
 const { getHabitStreak } = require('../../utils/streak');
+const { getShareTitle } = require('../../utils/share');
 
 Page({
   data: {
@@ -337,14 +338,14 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+      title: getShareTitle(),
       path: '/pages/habits/index',
     };
   },
 
   onShareTimeline() {
     return {
-      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+      title: getShareTitle(),
     };
   },
 });

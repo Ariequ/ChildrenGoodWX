@@ -1,6 +1,7 @@
 const { getCurrentUser, getCurrentUserData, redeemReward, getDataVersion } = require('../../utils/store');
 const { syncIfEnabled } = require('../../utils/sync');
 const { formatDateTime } = require('../../utils/date');
+const { getShareTitle } = require('../../utils/share');
 
 const EMOJI_MAP = {
   star: '⭐', icecream: '🍦', tv: '📺', moon: '🌙', ferriswheel: '🎡',
@@ -94,14 +95,14 @@ Page({
 
   onShareAppMessage() {
     return {
-      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+      title: getShareTitle(),
       path: '/pages/habits/index',
     };
   },
 
   onShareTimeline() {
     return {
-      title: '萌芽好习惯 - AI智能总结，让好习惯养成更有趣',
+      title: getShareTitle(),
     };
   },
 });

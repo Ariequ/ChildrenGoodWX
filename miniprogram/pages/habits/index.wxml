@@ -41,6 +41,9 @@
     </view>
   </view>
 
+  <!-- 隐藏的分享图 Canvas -->
+  <canvas type="2d" id="shareCanvas" style="position:fixed;left:-9999px;width:500px;height:400px;"></canvas>
+
   <!-- 连续打卡成就庆祝弹窗 -->
   <view class="achievement-overlay {{showAchievement ? 'show' : ''}}" bindtap="onDismissAchievement">
     <view class="achievement-card" catchtap="">
