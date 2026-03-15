@@ -1,5 +1,6 @@
 const { getCurrentUser, getCurrentUserData, getScoreLogsByDate, setScoreLogSourceTitle, getDataVersion } = require('../../utils/store');
 const { today, formatDateCn, formatWeekday, addDays } = require('../../utils/date');
+const { getHabitStreak } = require('../../utils/streak');
 
 Page({
   data: {
@@ -227,7 +228,7 @@ Page({
   },
 
   /**
-   * 分析习惯的坚持情况（最近7天）
+   * 分析习惯的坚持情况（使用共享 streak 工具）
    */
   analyzeHabitStreak() {
     const ud = getCurrentUserData();
@@ -235,41 +236,23 @@ Page({
     const habits = ud.habits || [];
     const allLogs = ud.logs || [];
     const todayDate = today();
-    
-    // 获取最近7天的日期列表
-    const recentDays = [];
-    for (let i = 0; i < 7; i++) {
-      recentDays.push(addDays(todayDate, -i));
-    }
-    
-    const streakHabits = []; // 连续打卡的习惯
-    const missedHabits = []; // 今天断档的习惯（之前有打卡但今天没有）
-    
+
+    const streakHabits = [];
+    const missedHabits = [];
+
     habits.forEach((habit) => {
-      // 统计最近7天每天是否打卡
-      const dayLogs = recentDays.map((date) => {
-        return allLogs.some((log) => log.habitId === habit.id && log.date === date);
-      });
-      
-      const todayLogged = dayLogs[0]; // 今天是否打卡
-      const yesterdayLogged = dayLogs[1]; // 昨天是否打卡
-      
-      // 计算连续打卡天数（从今天往前数）
-      let streak = 0;
-      for (let i = 0; i < dayLogs.length; i++) {
-        if (dayLogs[i]) streak++;
-        else break;
-      }
-      
+      const streak = getHabitStreak(habit.id, allLogs);
+      const todayLogged = allLogs.some((log) => log.habitId === habit.id && log.date === todayDate);
+      const yesterdayDate = addDays(todayDate, -1);
+      const yesterdayLogged = allLogs.some((log) => log.habitId === habit.id && log.date === yesterdayDate);
+
       if (streak >= 3) {
-        // 连续打卡3天以上
         streakHabits.push({ title: habit.title, streak });
       } else if (!todayLogged && yesterdayLogged) {
-        // 今天没打卡但昨天打卡了（断档）
         missedHabits.push({ title: habit.title });
       }
     });
-    
+
     return { streakHabits, missedHabits };
   },
 

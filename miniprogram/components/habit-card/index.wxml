@@ -1,6 +1,9 @@
 <view class="habit-card">
   <view class="icon-area" style="background-color: {{habit.color || '#4D96FF'}}">
     <text class="icon-text">{{iconDisplay}}</text>
+    <view class="streak-badge" wx:if="{{habit.streak >= 3}}">
+      <text class="streak-text">🔥{{habit.streak}}天</text>
+    </view>
   </view>
   <text class="title">{{habit.title}}</text>
   <view class="star-rating">

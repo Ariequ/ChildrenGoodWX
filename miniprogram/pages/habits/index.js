@@ -1,14 +1,21 @@
 const { getCurrentUser, getCurrentUserData, logHabitStars, getHabitStarsToday, migrateHabitIcons, getDataVersion } = require('../../utils/store');
 const { syncIfEnabled } = require('../../utils/sync');
+const { getAllHabitStreaks, checkStreakAchievement } = require('../../utils/streak');
 
 Page({
   data: {
     habits: [],
     habitRows: [],
     score: 0,
+    showAchievement: false,
+    achievementEmoji: '',
+    achievementTitle: '',
+    achievementHabit: '',
+    achievementDays: 0,
   },
 
   _lastVersion: -1,
+  _achievementTimer: null,
 
   onLoad() {
     this.checkAuth();
@@ -38,12 +45,14 @@ Page({
     this._lastVersion = getDataVersion();
     const ud = getCurrentUserData();
     if (!ud) return;
+    const streaks = getAllHabitStreaks(ud.habits || [], ud.logs || []);
     const list = (ud.habits || []).map((h) => {
       const n = getHabitStarsToday(h.id);
       const maxStars = h.maxStars != null ? h.maxStars : 3;
       return {
         ...h,
         starsToday: Math.min(maxStars, Math.max(0, typeof n === 'number' ? n : 0)),
+        streak: streaks[h.id] || 0,
       };
     });
     // 按星星数从小到大排序（参考 Web 版布局）
@@ -74,8 +83,51 @@ Page({
     const res = logHabitStars(habitId, stars);
     if (res.ok) {
       syncIfEnabled();
+      // 打卡成功后检查连续打卡成就
+      if (stars > 0) {
+        this._checkAchievement(habitId);
+      }
       this.loadData();
     }
+  },
+
+  _checkAchievement(habitId) {
+    const ud = getCurrentUserData();
+    if (!ud) return;
+    if (!ud.achievements) ud.achievements = [];
+    const achievement = checkStreakAchievement(habitId, ud.logs || [], ud.achievements);
+    if (achievement) {
+      // 记录成就
+      ud.achievements.push({
+        habitId: achievement.habitId,
+        days: achievement.days,
+        date: require('../../utils/date').today(),
+      });
+      // 持久化成就
+      const { syncToUser, getCurrentUser } = require('../../utils/store');
+      const user = getCurrentUser();
+      if (user) syncToUser(user.code);
+      // 找到习惯名
+      const habit = (ud.habits || []).find((h) => h.id === habitId);
+      const habitTitle = habit ? habit.title : '';
+      // 显示庆祝弹窗
+      this.setData({
+        showAchievement: true,
+        achievementEmoji: achievement.emoji,
+        achievementTitle: achievement.title,
+        achievementHabit: habitTitle,
+        achievementDays: achievement.days,
+      });
+      if (this._achievementTimer) clearTimeout(this._achievementTimer);
+      this._achievementTimer = setTimeout(() => {
+        this.setData({ showAchievement: false });
+      }, 3000);
+    }
+  },
+
+  onDismissAchievement() {
+    if (this._achievementTimer) clearTimeout(this._achievementTimer);
+    this.setData({ showAchievement: false });
   },
 
   onShareAppMessage() {
