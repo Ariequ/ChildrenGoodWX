@@ -124,6 +124,23 @@ function apiInviteToggleSync(targetCode, allowSync) {
     });
 }
 
+/**
+ * 保存订阅状态到云端
+ * @param {string} code 邀请码
+ */
+function apiSaveSubscription(code) {
+  return wx.cloud
+    .callFunction({
+      name: CLOUD_FUNC_NAME,
+      data: { type: 'saveSubscription', code: String(code).trim() },
+    })
+    .then((res) => res.result)
+    .catch((err) => {
+      console.error('[api] saveSubscription error', err);
+      return { success: false, errMsg: err.errMsg };
+    });
+}
+
 module.exports = {
   apiLogin,
   apiSaveData,
@@ -131,4 +148,5 @@ module.exports = {
   apiInviteList,
   apiInviteDelete,
   apiInviteToggleSync,
+  apiSaveSubscription,
 };

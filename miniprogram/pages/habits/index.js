@@ -1,6 +1,7 @@
 const { getCurrentUser, getCurrentUserData, logHabitStars, getHabitStarsToday, migrateHabitIcons, getDataVersion } = require('../../utils/store');
 const { syncIfEnabled } = require('../../utils/sync');
 const { getAllHabitStreaks, checkStreakAchievement } = require('../../utils/streak');
+const { requestSubscribe } = require('../../utils/subscribe');
 
 Page({
   data: {
@@ -86,6 +87,7 @@ Page({
       // 打卡成功后检查连续打卡成就
       if (stars > 0) {
         this._checkAchievement(habitId);
+        requestSubscribe();
       }
       this.loadData();
     }
